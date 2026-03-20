@@ -138,10 +138,10 @@ const StudentTable = ({
                     <td className="px-10 py-6 text-sm font-medium text-on-surface-variant">
                       {String(startIndex + index + 1).padStart(2, '0')}
                     </td>
-                    <td className="px-6 py-6 text-sm font-mono font-bold text-primary">{student.nim}</td>
+                    <td className="px-6 py-6 text-sm font-bold tracking-wider text-primary">{student.nim}</td>
                     <td className="px-6 py-6">
                       <div className="flex items-center gap-3">
-                        <div className={`w-8 h-8 rounded-full text-xs font-bold flex items-center justify-center ${AVATAR_STYLES[getProdiAbbr(student.prodi)] || 'bg-surface-container-high text-on-surface-variant'}`}>
+                        <div className={`w-8 h-8 shrink-0 rounded-full text-[11px] leading-none font-bold flex items-center justify-center ${AVATAR_STYLES[getProdiAbbr(student.prodi)] || 'bg-surface-container-high text-on-surface-variant'}`}>
                           {getInitials(student.nama)}
                         </div>
                         <span className="text-sm font-semibold text-on-surface">{student.nama}</span>

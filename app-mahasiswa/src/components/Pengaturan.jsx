@@ -131,7 +131,7 @@ const Pengaturan = ({ adminProfile, setAdminProfile, adminAvatar, isDark, toggle
                   <motion.div 
                     layout
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                    className="w-5 h-5 bg-white rounded-full shadow-sm flex items-center justify-center"
+                    className="w-5 h-5 shrink-0 bg-white rounded-full shadow-sm flex items-center justify-center"
                   />
                 </div>
               </label>
@@ -148,7 +148,7 @@ const Pengaturan = ({ adminProfile, setAdminProfile, adminAvatar, isDark, toggle
                   <motion.div 
                     layout
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                    className="w-5 h-5 bg-white rounded-full shadow-sm flex items-center justify-center overflow-hidden"
+                    className="w-5 h-5 shrink-0 bg-white rounded-full shadow-sm flex items-center justify-center overflow-hidden"
                   >
                     <span className="material-symbols-outlined text-[12px] text-primary select-none opacity-50">
                       {isDark ? 'dark_mode' : 'light_mode'}
