@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/mahasiswa")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://simaka-filkom.vercel.app")
 public class MahasiswaController {
 
     private final MahasiswaManager manager = new MahasiswaManager();
@@ -37,8 +37,7 @@ public class MahasiswaController {
                 data.getFakultas(),
                 data.getDepartemen(),
                 data.getStrata(),
-                data.getProdi()
-        );
+                data.getProdi());
 
         if (success) {
             return ResponseEntity.ok(data);
