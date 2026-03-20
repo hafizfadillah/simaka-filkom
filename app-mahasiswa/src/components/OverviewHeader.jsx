@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const OverviewHeader = ({ onAddStudentClick }) => {
   return (
-    <section className="flex justify-between items-end">
+    <section className="flex flex-col md:flex-row md:justify-between items-start md:items-end gap-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

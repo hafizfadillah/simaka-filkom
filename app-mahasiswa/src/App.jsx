@@ -170,7 +170,7 @@ function App() {
           onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)}
         />
 
-        <div className="p-6 md:p-12 flex-1 flex flex-col relative w-full overflow-hidden">
+        <div className="p-4 md:p-12 flex-1 flex flex-col relative w-full overflow-hidden">
           <AnimatePresence mode="wait">
             {activePage === 'dashboard' && <Dashboard key="dashboard" />}
 

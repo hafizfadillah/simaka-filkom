@@ -50,8 +50,8 @@ const TopNav = ({ searchQuery, onSearch, isDark, toggleDark, adminProfile, admin
 
   return (
     <>
-      <header className="h-24 px-6 md:px-12 flex items-center justify-between glass-nav sticky top-0 z-40 border-b border-outline-variant/10 shadow-sm backdrop-blur-2xl">
-      <div className="flex items-center gap-4 md:gap-8 flex-1">
+      <header className="h-20 lg:h-24 px-4 lg:px-12 flex items-center justify-between glass-nav sticky top-0 z-40 border-b border-outline-variant/10 shadow-sm backdrop-blur-2xl">
+      <div className="flex items-center gap-4 lg:gap-8 flex-1">
         <button 
           onClick={onMenuClick}
           className="lg:hidden w-11 h-11 rounded-full flex items-center justify-center hover:bg-surface-container-high text-on-surface-variant transition-colors group"
