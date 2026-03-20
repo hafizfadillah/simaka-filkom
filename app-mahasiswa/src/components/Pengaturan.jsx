@@ -127,11 +127,11 @@ const Pengaturan = ({ adminProfile, setAdminProfile, adminAvatar, isDark, toggle
                   <p className="font-bold text-on-surface mb-1 group-hover:text-primary transition-colors">Notifikasi Email</p>
                   <p className="text-sm text-on-surface-variant">Terima laporan mingguan dan pemberitahuan via email.</p>
                 </div>
-                <div className={`w-14 h-7 rounded-full relative transition-colors duration-300 ${emailNotifications ? 'bg-primary' : 'bg-surface-container-highest shadow-inner border border-outline-variant/20'}`}>
+                <div className={`w-14 h-7 flex items-center p-1 rounded-full transition-colors duration-300 ${emailNotifications ? 'bg-primary justify-end' : 'bg-surface-container-highest shadow-inner border border-outline-variant/20 justify-start'}`}>
                   <motion.div 
-                    initial={false}
-                    animate={{ x: emailNotifications ? 28 : 2 }}
-                    className="absolute top-1 w-5 h-5 bg-white rounded-full shadow-sm flex items-center justify-center"
+                    layout
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    className="w-5 h-5 bg-white rounded-full shadow-sm flex items-center justify-center"
                   />
                 </div>
               </label>
@@ -144,11 +144,11 @@ const Pengaturan = ({ adminProfile, setAdminProfile, adminAvatar, isDark, toggle
                   <p className="font-bold text-on-surface mb-1 group-hover:text-primary transition-colors">Mode Tampilan Gelap (Dark Mode)</p>
                   <p className="text-sm text-on-surface-variant">Sesuaikan UI dengan lingkungan rendah cahaya atau preferensi mata.</p>
                 </div>
-                <div className={`w-14 h-7 rounded-full relative transition-colors duration-300 ${isDark ? 'bg-primary' : 'bg-surface-container-highest shadow-inner border border-outline-variant/20'}`}>
+                <div className={`w-14 h-7 flex items-center p-1 rounded-full transition-colors duration-300 ${isDark ? 'bg-primary justify-end' : 'bg-surface-container-highest shadow-inner border border-outline-variant/20 justify-start'}`}>
                   <motion.div 
-                    initial={false}
-                    animate={{ x: isDark ? 28 : 2 }}
-                    className="absolute top-1 w-5 h-5 bg-white rounded-full shadow-sm flex items-center justify-center overflow-hidden"
+                    layout
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    className="w-5 h-5 bg-white rounded-full shadow-sm flex items-center justify-center overflow-hidden"
                   >
                     <span className="material-symbols-outlined text-[12px] text-primary select-none opacity-50">
                       {isDark ? 'dark_mode' : 'light_mode'}

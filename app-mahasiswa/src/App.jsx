@@ -37,7 +37,17 @@ function App() {
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [notifications, setNotifications] = useState([]);
   const perPage = 5;
+
+  const addNotification = (title) => {
+    const newNotif = {
+      id: Date.now(),
+      title,
+      time: 'Baru saja'
+    };
+    setNotifications((prev) => [newNotif, ...prev].slice(0, 5));
+  };
 
   useEffect(() => {
     if (isDark) {
@@ -106,6 +116,7 @@ function App() {
         await fetch(`${BASE_URL}/api/mahasiswa/${deleteTarget.nim}`, {
           method: 'DELETE'
         });
+        addNotification(`Data mahasiswa ${deleteTarget.nama} dihapus`);
         fetchMahasiswa();
       } catch (err) {
         console.error('Gagal hapus data:', err);
@@ -122,12 +133,14 @@ function App() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         });
+        addNotification(`Data ${data.nama} berhasil diupdate`);
       } else {
         await fetch(`${BASE_URL}/api/mahasiswa`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         });
+        addNotification(`Mahasiswa baru (${data.nama}) ditambahkan`);
       }
       fetchMahasiswa();
     } catch (err) {
@@ -168,6 +181,8 @@ function App() {
           onLogoutClick={() => setIsLogoutModalOpen(true)}
           onProfileClick={() => setActivePage('pengaturan')}
           onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          notifications={notifications}
+          onClearNotifications={() => setNotifications([])}
         />
 
         <div className="p-4 md:p-12 flex-1 flex flex-col relative w-full overflow-hidden">

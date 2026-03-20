@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const TopNav = ({ searchQuery, onSearch, isDark, toggleDark, adminProfile, adminAvatar, setAdminAvatar, onLogoutClick, onProfileClick, onMenuClick }) => {
+const TopNav = ({ searchQuery, onSearch, isDark, toggleDark, adminProfile, adminAvatar, setAdminAvatar, onLogoutClick, onProfileClick, onMenuClick, notifications = [], onClearNotifications }) => {
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isViewPhotoOpen, setIsViewPhotoOpen] = useState(false);
@@ -25,10 +25,7 @@ const TopNav = ({ searchQuery, onSearch, isDark, toggleDark, adminProfile, admin
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const notifications = [
-    { id: 1, title: 'Mahasiswa baru ditambahkan', time: '5 mnt lalu' },
-    { id: 2, title: 'Data berhasil diupdate', time: '1 jam lalu' },
-  ];
+  // Hardcoded notifications removed, using props instead
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -101,7 +98,7 @@ const TopNav = ({ searchQuery, onSearch, isDark, toggleDark, adminProfile, admin
             onClick={() => { setIsNotifOpen(!isNotifOpen); setIsProfileOpen(false); }}
           >
             <span className="material-symbols-outlined md:text-[24px]">notifications</span>
-            <span className="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-error rounded-full ring-2 ring-surface"></span>
+            {notifications.length > 0 && <span className="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-error rounded-full ring-2 ring-surface"></span>}
           </motion.button>
           
           <AnimatePresence>
@@ -115,22 +112,39 @@ const TopNav = ({ searchQuery, onSearch, isDark, toggleDark, adminProfile, admin
               >
                 <div className="px-5 py-4 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30">
                   <h3 className="font-bold text-sm text-on-surface">Notifikasi</h3>
-                  <span className="text-xs font-semibold text-primary cursor-pointer hover:underline">Tandai sudah dibaca</span>
+                  {notifications.length > 0 && (
+                    <span 
+                      className="text-xs font-semibold text-primary cursor-pointer hover:underline"
+                      onClick={() => { onClearNotifications(); setIsNotifOpen(false); }}
+                    >
+                      Tandai sudah dibaca
+                    </span>
+                  )}
                 </div>
                 <div className="max-h-80 overflow-y-auto">
-                  {notifications.map(n => (
-                    <div key={n.id} className="px-5 py-4 hover:bg-surface-container-low transition-colors cursor-pointer border-b border-outline-variant/5 last:border-0 flex gap-4">
-                      <div className="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary shrink-0">
-                        <span className="material-symbols-outlined text-sm">notifications</span>
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-on-surface mb-0.5">{n.title}</p>
-                        <p className="text-xs text-on-surface-variant">{n.time}</p>
-                      </div>
+                  {notifications.length === 0 ? (
+                    <div className="px-5 py-8 text-center text-on-surface-variant flex flex-col items-center gap-2">
+                      <span className="material-symbols-outlined text-3xl opacity-50">notifications_off</span>
+                      <p className="text-sm font-medium">Tidak ada notifikasi baru</p>
                     </div>
-                  ))}
+                  ) : (
+                    notifications.map(n => (
+                      <div key={n.id} className="px-5 py-4 hover:bg-surface-container-low transition-colors cursor-pointer border-b border-outline-variant/5 last:border-0 flex gap-4">
+                        <div className="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary shrink-0">
+                          <span className="material-symbols-outlined text-sm">notifications</span>
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-on-surface mb-0.5">{n.title}</p>
+                          <p className="text-xs text-on-surface-variant">{n.time}</p>
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </div>
-                <div className="px-5 py-3 text-center border-t border-outline-variant/10 bg-surface-container-low/30 hover:bg-surface-container-high transition-colors cursor-pointer">
+                <div 
+                  className="px-5 py-3 text-center border-t border-outline-variant/10 bg-surface-container-low/30 hover:bg-surface-container-high transition-colors cursor-pointer"
+                  onClick={() => setIsNotifOpen(false)}
+                >
                   <p className="text-xs font-bold text-primary">Lihat Semua</p>
                 </div>
               </motion.div>

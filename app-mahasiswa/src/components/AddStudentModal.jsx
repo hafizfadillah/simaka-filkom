@@ -93,7 +93,7 @@ const AddStudentModal = ({ isOpen, onClose, onSave, student }) => {
           >
             {/* Header */}
             <div className="bg-gradient-to-br from-primary to-primary-container p-6 text-white relative">
-              <div className="relative z-10">
+              <div className="relative z-10 pr-24">
                 <h3 className="text-3xl font-bold tracking-tight mb-2">
                   {isEditing ? 'Edit Mahasiswa' : 'Tambah Mahasiswa'}
                 </h3>
